@@ -4,13 +4,13 @@ import './Header.css';
 
 class Header extends React.Component {
     render() {
-        return(
+        return (
             <header>
                 <div className='logo'>
                     <FaReddit className='logo-img' />
-                    <h2>
+                    <h1>
                         <span className='highlight'>Reddit</span>Min
-                    </h2>
+                    </h1>
                 </div>
                 <FaUserCircle className='profile' />
             </header>
