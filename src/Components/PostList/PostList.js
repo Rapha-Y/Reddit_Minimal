@@ -3,40 +3,43 @@ import './PostList.css';
 
 import Post from '../Post/Post';
 
-// Hardcoded data
-const posts = [
-    {
-      title: 'Cat pic, upvotes to the left',
-      author: 'AmeliaWatson',
-      time: Date.parse('2020-11-28T15:00-03:00'),
-      img: 'https://a.wattpad.com/useravatar/SelinaAl7.256.653083.jpg',
-      upvotes: 102568,
-      id: 1
-    },
-    {
-      title: 'I SIMP FOR THE GODDESS',
-      author: 'KiaraHololive',
-      time: Date.parse('2020-11-28T21:00-03:00'),
-      img: 'https://static.zerochan.net/Mori.Calliope.full.3106276.png',
-      upvotes: 240194,
-      id: 2
-    },
-    {
-      title: 'long boi',
-      author: 'GawrGura',
-      time: Date.now(),
-      img: 'https://i.pinimg.com/originals/4c/19/5a/4c195a2b21aa113a91c9ffa14378df81.png',
-      upvotes: 666,
-      id: 3
-    }
-];
-
 class PostList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: []
+        }
+    }
+
+    componentDidMount() {
+        const fetch = require('node-fetch');
+        const url = 'https://www.reddit.com/r/all.json?raw_json=1&limit=30';
+
+        fetch(url)
+            .then(res => res.json())
+            .then(res => res.data.children)
+            .then(res => res.map(post => {
+                let title = post.data.title;
+                let author = post.data.author;
+                let time = post.data.created_utc;
+                let img = post.data.preview ? post.data.preview.images[0].source.url : '';
+                let upvotes = post.data.ups - post.data.downs;
+                let id = post.data.id;
+
+                return { title, author, time, img, upvotes, id };
+            }))
+            .then(res => {
+                this.setState({
+                    posts: res
+                });
+            });
+    }
+
     render() {
         return (
             <div className='postlist-container'>
                 {
-                    posts.map((post) => {
+                    this.state.posts.map((post) => {
                         return <Post
                             title={post.title}
                             author={post.author}

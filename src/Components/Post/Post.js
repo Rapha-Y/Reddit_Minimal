@@ -21,7 +21,7 @@ class Post extends React.Component {
 
     getTimeDiff() {
         const currentTime = new Date();
-        const postTime = new Date(this.props.time);
+        const postTime = new Date(this.props.time * 1000);
         
         const yearDiff = currentTime.getFullYear() - postTime.getFullYear();
         const monthDiff = currentTime.getMonth() - postTime.getMonth();
@@ -77,7 +77,11 @@ class Post extends React.Component {
                         <div className='post-info'>Posted by u/{this.props.author} {this.getTimeDiff()}</div>
                         <h2>{this.props.title}</h2>
                     </div>
-                    <img src={this.props.img} alt={`post sent by ${this.props.author}`} />
+                    {
+                        this.props.img ? 
+                        <img src={this.props.img} alt={`post sent by ${this.props.author}`} /> :
+                        ''
+                    }
                 </div>
             </div>
         );
