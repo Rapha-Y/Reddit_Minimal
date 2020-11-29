@@ -68,16 +68,16 @@ class Post extends React.Component {
         return (
             <div className='post-container'>
                 <div className='upvote-container'>
-                    <FaChevronUp />
+                    <FaChevronUp className='disabled-button' />
                     <span className='upvote-info'>{this.shortenNumber()}</span>
-                    <FaChevronDown />
+                    <FaChevronDown className='disabled-button' />
                 </div>
                 <div className='post-content'>
                     <div className='post-text'> 
                         <div className='post-info'>Posted by u/{this.props.author} {this.getTimeDiff()}</div>
                         <h2>{this.props.title}</h2>
                     </div>
-                    <img src={this.props.img} alt="cat" />
+                    <img src={this.props.img} alt={`post sent by ${this.props.author}`} />
                 </div>
             </div>
         );

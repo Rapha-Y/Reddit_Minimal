@@ -1,14 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .post-container {
     display: flex;
     background-color: white;
-    margin: 10px;
+    margin: 10px 0;
     border: 1px solid rgb(204, 204, 204);
     border-radius: 4px;
+    box-sizing: border-box;
     width: 100%;
 }
 
@@ -20,6 +16,10 @@
     padding-top: 10px;
     background-color: rgb(248, 249, 250);
     font-weight: 500;
+}
+
+.disabled-button {
+    opacity: 0.2;
 }
 
 .upvote-info {

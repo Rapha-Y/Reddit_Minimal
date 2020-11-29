@@ -5,13 +5,7 @@ import PostList from './Components/PostList/PostList';
 
 function App() {
   return (
-    <div className="App" style={{
-      backgroundColor: "rgb(218, 224, 230)", 
-      paddingBottom: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}>
+    <div className="App">
       <Header />
       <PostList />
     </div>

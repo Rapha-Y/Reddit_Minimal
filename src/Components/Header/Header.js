@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaReddit, FaUserCircle } from 'react-icons/fa';
+import { FaReddit } from 'react-icons/fa';
 import './Header.css';
 
 class Header extends React.Component {
