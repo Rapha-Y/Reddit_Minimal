@@ -9,6 +9,7 @@
     margin: 10px;
     border: 1px solid rgb(204, 204, 204);
     border-radius: 4px;
+    width: 100%;
 }
 
 .upvote-container {

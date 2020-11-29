@@ -6,9 +6,10 @@
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
+    justify-content: center;
+    padding: 10px 0;
     background-color: white;
+    width: 100%;
 }
 
 h1 {
@@ -29,9 +30,4 @@ h1 {
     height: 30px;
     width: 30px;
     padding-right: 10px;
-}
-
-.profile {
-    height: 30px;
-    width: 30px;
 }

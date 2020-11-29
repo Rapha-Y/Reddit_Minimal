@@ -5,13 +5,14 @@ import './Post.css';
 class Post extends React.Component {
     shortenNumber() {
         const number = this.props.upvotes;
-        if (number < 1000) {
+        const absNumber = Math.abs(number);
+        if (absNumber < 1000) {
             return number;
-        } else if (number < 1000000) {
+        } else if (absNumber < 1000000) {
             return Math.floor(number / 1000) + 'k';
-        } else if (number < 1000000000) {
+        } else if (absNumber < 1000000000) {
             return Math.floor(number / 1000000) + 'm';
-        } else if (number < 1000000000000) {
+        } else if (absNumber < 1000000000000) {
             return Math.floor(number / 1000000) + 'b';
         } else {
             return '???';
@@ -64,7 +65,6 @@ class Post extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className='post-container'>
                 <div className='upvote-container'>

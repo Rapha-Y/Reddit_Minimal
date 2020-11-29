@@ -12,7 +12,6 @@ class Header extends React.Component {
                         <span className='highlight'>Reddit</span>Min
                     </h1>
                 </div>
-                <FaUserCircle className='profile' />
             </header>
         );
     }
