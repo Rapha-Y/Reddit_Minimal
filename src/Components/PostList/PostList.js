@@ -25,8 +25,9 @@ class PostList extends React.Component {
                 let img = post.data.preview ? post.data.preview.images[0].source.url : '';
                 let upvotes = post.data.ups - post.data.downs;
                 let id = post.data.id;
+                let link = 'https://www.reddit.com' + post.data.permalink;
 
-                return { title, author, time, img, upvotes, id };
+                return { title, author, time, img, upvotes, id, link };
             }))
             .then(res => {
                 this.setState({
@@ -47,6 +48,7 @@ class PostList extends React.Component {
                             img={post.img}
                             upvotes={post.upvotes}
                             key={post.id}
+                            link={post.link}
                         />;
                     })
                 }

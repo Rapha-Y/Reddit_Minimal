@@ -1,4 +1,8 @@
-.post-container {
+.post-container { 
+    width: 100%;
+}
+
+.post-container a {
     display: flex;
     background-color: white;
     margin: 10px 0;
@@ -6,6 +10,13 @@
     border-radius: 4px;
     box-sizing: border-box;
     width: 100%;
+    text-decoration: none;
+    color: rgb(34, 34, 34);
+}
+
+.post-container a:hover {
+    background-color: rgb(250, 250, 250);
+    opacity: 0.9;
 }
 
 .upvote-container {
