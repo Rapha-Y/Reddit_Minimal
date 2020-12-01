@@ -30,4 +30,9 @@
         background-color: rgb(61, 90, 241);
     
     }
+
+    .btn-inactive:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
 }

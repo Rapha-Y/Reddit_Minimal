@@ -5,10 +5,10 @@ import { FaSearch } from 'react-icons/fa';
 class SearchBar extends React.Component {
     render() {
         return (
-            <div className='search-bar'>
+            <label for='search-bar' className='search-bar'>
                 <FaSearch />
-                <input type='text' value='Search' />
-            </div>
+                <input type='text' placeholder='Search' id='search-bar' name='search-bar' />
+            </label>
         );
     }
 }
