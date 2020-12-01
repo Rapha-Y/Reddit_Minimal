@@ -1,80 +1,22 @@
 import React from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import './Post.css';
+import { shortenNumber, getTimeDiff } from '../../Functions/functions';
 
 class Post extends React.Component {
-    shortenNumber() {
-        const number = this.props.upvotes;
-        const absNumber = Math.abs(number);
-        if (absNumber < 1000) {
-            return number;
-        } else if (absNumber < 1000000) {
-            return Math.floor(number / 1000) + 'k';
-        } else if (absNumber < 1000000000) {
-            return Math.floor(number / 1000000) + 'm';
-        } else if (absNumber < 1000000000000) {
-            return Math.floor(number / 1000000) + 'b';
-        } else {
-            return '???';
-        }
-    }
-
-    getTimeDiff() {
-        const currentTime = new Date();
-        const postTime = new Date(this.props.time * 1000);
-        
-        const yearDiff = currentTime.getFullYear() - postTime.getFullYear();
-        const monthDiff = currentTime.getMonth() - postTime.getMonth();
-        const dayDiff = currentTime.getDate() - postTime.getDate();
-        const hourDiff = currentTime.getHours() - postTime.getHours();
-        const minDiff = currentTime.getMinutes() - postTime.getMinutes();
-
-        if (yearDiff > 0) {
-            if (yearDiff > 1) {
-                return yearDiff + ' years ago';
-            } else {
-                return yearDiff + ' year ago';
-            }
-        } else if (monthDiff > 0) {
-            if (monthDiff > 1) {
-                return monthDiff + ' months ago';
-            } else {
-                return monthDiff + ' month ago';
-            }
-        } else if (dayDiff > 0) {
-            if (dayDiff > 1) {
-                return dayDiff + ' days ago';
-            } else {
-                return dayDiff + ' day ago';
-            }
-        } else if (hourDiff > 0) {
-            if (hourDiff > 1) {
-                return hourDiff + ' hours ago';
-            } else {
-                return hourDiff + ' hour ago';
-            }
-        } else if (minDiff > 0) {
-            if (minDiff > 1) {
-                return minDiff + ' minutes ago';
-            } else {
-                return minDiff + ' minute ago';
-            }
-        } else {
-            return ' just now';
-        }
-    }
-
     render() {
         return (
             <div className='post-container'>
                 <div className='upvote-container'>
                     <FaChevronUp className='disabled-button' />
-                    <span className='upvote-info'>{this.shortenNumber()}</span>
+                    <span className='upvote-info'>{shortenNumber(this.props.upvotes)}</span>
                     <FaChevronDown className='disabled-button' />
                 </div>
                 <div className='post-content'>
                     <div className='post-text'> 
-                        <div className='post-info'>Posted by u/{this.props.author} {this.getTimeDiff()}</div>
+                        <div className='post-info'>
+                            Posted by u/{this.props.author} {getTimeDiff(new Date(), new Date(this.props.time * 1000))}
+                        </div>
                         <h2>{this.props.title}</h2>
                     </div>
                     {
