@@ -7,13 +7,14 @@ class PostList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
-        }
+            posts: [],
+            sub: ''
+        };
     }
 
-    componentDidMount() {
+    loadList() {
         const fetch = require('node-fetch');
-        const url = 'https://www.reddit.com/r/all.json?raw_json=1&limit=30';
+        const url = 'https://www.reddit.com/r/' + this.props.sub + '.json?raw_json=1&limit=10';
 
         fetch(url)
             .then(res => res.json())
@@ -30,10 +31,21 @@ class PostList extends React.Component {
                 return { title, author, time, img, upvotes, id, link };
             }))
             .then(res => {
-                this.setState({
-                    posts: res
-                });
+                if (this.state.sub !== this.props.sub) {
+                    this.setState({
+                        posts: res,
+                        sub: this.props.sub
+                    });
+                }
             });
+    }
+
+    componentDidMount() {
+        this.loadList();
+    }
+
+    componentDidUpdate() {
+        this.loadList();
     }
 
     render() {

@@ -16,7 +16,7 @@ class Header extends React.Component {
                     </h1>
                 </div>
                 <SearchBar />
-                <TagButtons />
+                <TagButtons onToggle={this.props.onToggle} />
             </header>
         );
     }
