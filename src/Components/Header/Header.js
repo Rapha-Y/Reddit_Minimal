@@ -15,7 +15,7 @@ class Header extends React.Component {
                         <span className='highlight'>Reddit</span>Min
                     </h1>
                 </div>
-                <SearchBar />
+                <SearchBar onSearch={this.props.onSearch} />
                 <TagButtons onToggle={this.props.onToggle} />
             </header>
         );

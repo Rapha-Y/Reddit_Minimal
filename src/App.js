@@ -8,9 +8,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sub: 'all'
+      sub: 'all',
+      searchTerm: '',
     };
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.toggleSub = this.toggleSub.bind(this);
+  }
+
+  updateSearchTerm(newTerm) {
+    this.setState({
+      searchTerm: newTerm
+    });
   }
 
   toggleSub() {
@@ -28,8 +36,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header onToggle={this.toggleSub} />
-        <PostList sub={this.state.sub} />
+        <Header onToggle={this.toggleSub} onSearch={this.updateSearchTerm} />
+        <PostList sub={this.state.sub} searchTerm={this.state.searchTerm} />
       </div>
     );
   }

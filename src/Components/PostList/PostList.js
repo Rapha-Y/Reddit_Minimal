@@ -8,7 +8,8 @@ class PostList extends React.Component {
         super(props);
         this.state = {
             posts: [],
-            sub: ''
+            sub: '',
+            searchTerm: ''
         };
     }
 
@@ -20,21 +21,27 @@ class PostList extends React.Component {
             .then(res => res.json())
             .then(res => res.data.children)
             .then(res => res.map(post => {
+                let searchTerm = this.props.searchTerm;
                 let title = post.data.title;
                 let author = post.data.author;
-                let time = post.data.created_utc;
-                let img = post.data.preview ? post.data.preview.images[0].source.url : '';
-                let upvotes = post.data.ups - post.data.downs;
-                let id = post.data.id;
-                let link = 'https://www.reddit.com' + post.data.permalink;
+                if (title.includes(searchTerm) || author.includes(searchTerm)) {
+                    let time = post.data.created_utc;
+                    let img = post.data.preview ? post.data.preview.images[0].source.url : '';
+                    let upvotes = post.data.ups - post.data.downs;
+                    let id = post.data.id;
+                    let link = 'https://www.reddit.com' + post.data.permalink;
 
-                return { title, author, time, img, upvotes, id, link };
+                    return { title, author, time, img, upvotes, id, link };
+                } else {
+                    return null;
+                }
             }))
             .then(res => {
-                if (this.state.sub !== this.props.sub) {
+                if (this.state.sub !== this.props.sub || this.state.searchTerm !== this.props.searchTerm) {
                     this.setState({
                         posts: res,
-                        sub: this.props.sub
+                        sub: this.props.sub,
+                        searchTerm: this.props.searchTerm
                     });
                 }
             });
@@ -53,15 +60,19 @@ class PostList extends React.Component {
             <div className='postlist-container'>
                 {
                     this.state.posts.map((post) => {
-                        return <Post
-                            title={post.title}
-                            author={post.author}
-                            time={post.time}
-                            img={post.img}
-                            upvotes={post.upvotes}
-                            key={post.id}
-                            link={post.link}
-                        />;
+                        if (post) {
+                            return <Post
+                                title={post.title}
+                                author={post.author}
+                                time={post.time}
+                                img={post.img}
+                                upvotes={post.upvotes}
+                                key={post.id}
+                                link={post.link}
+                            />;
+                        } else {
+                            return '';
+                        }
                     })
                 }
             </div>
